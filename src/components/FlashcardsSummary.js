@@ -13,7 +13,7 @@ export const FlashcardsSummary = ({ visibleFlashcardCount, invisibleFlashcardCou
         <h1 className="page-header__title">Viewing <span>{visibleFlashcardCount}</span> {visibleFlashcardWord}</h1>
         <h1 className="page-header__title">Hidden <span>{invisibleFlashcardCount}</span> {invisibleFlashcardWord}</h1>
         <div className="page-header__actions">
-          <Link className="button" to="/create">Add Flashcard</Link>
+          <Link className="button" to="/create">Add Flashcards</Link>
         </div>
       </div>
     </div>

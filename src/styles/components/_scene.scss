@@ -31,9 +31,17 @@
   backface-visibility: hidden;
 }
 
+.difficulty-ranges {
+  display: flex;
+  div {
+    padding-right: 30px;
+  }
+}
+
 .page {
   @media (min-width: $desktop-breakpoint) {
     display: flex;
+    align-items: flex-start;
 
 }
 button {
@@ -89,6 +97,7 @@ button {
       display: flex;
       flex-wrap: wrap;
       align-content: flex-end;
+      
   }
 }
 

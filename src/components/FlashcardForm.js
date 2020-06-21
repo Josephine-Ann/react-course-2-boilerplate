@@ -29,7 +29,8 @@ export default class FlashcardForm extends React.Component {
             spanishseven: props.flashcard ? props.flashcard.spanishseven : '',
             spanisheight: props.flashcard ? props.flashcard.spanisheight : '',
             spanishnine: props.flashcard ? props.flashcard.spanishnine : '',
-            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+            createdAt: props.flashcard ? moment(props.flashcard.createdAt) : moment(),
+            lastStudiedAt: props.flashcard ? moment(props.flashcard.lastStudiedAt) : moment(),
             calendarFocused: false,
             error: ''
         };
@@ -131,6 +132,7 @@ export default class FlashcardForm extends React.Component {
             this.setState(() => ({ error: "" }));
             this.props.onSubmit({
                 title: this.state.title,
+                lastStudiedAt: this.state.lastStudiedAt.valueOf(),
                 difficulty: this.state.difficulty,
                 createdAt: this.state.createdAt.valueOf(),
                 englishone: this.state.englishone,
@@ -158,6 +160,20 @@ export default class FlashcardForm extends React.Component {
         return (
             <form className="form" onSubmit={this.onSubmit}>
             {this.state.error && <p className="form__error">{this.state.error}</p>}
+            <div className="difficulty-ranges">
+            <div>
+            <input type="radio" id="opteight" name="optstr" value="86400000" checked={this.state.difficulty === "86400000"} onChange={this.onDifficultyChange}/>
+            <label> Easy </label>
+            </div>
+            <div>
+            <input type="radio" id="opteight" name="optstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
+            <label> Medium </label>
+            </div>
+            <div>
+            <input type="radio" id="opteight" name="optstr" value="1036800000" onChange={this.onDifficultyChange} checked={this.state.difficulty === "1036800000"}/>
+            <label> Difficult </label>
+            </div>
+            </div>
             <input
             type="text"
             placeholder="Title"
@@ -165,13 +181,6 @@ export default class FlashcardForm extends React.Component {
             className="text-input"
             value={this.state.title}
             onChange={this.onTitleChange}
-            />
-            <input
-            type="test"
-            placeholder="Difficulty"
-            className="text-input"
-            value={this.state.difficulty}
-            onChange={this.onDifficultyChange}
             />
             <SingleDatePicker 
             date={this.state.createdAt} 

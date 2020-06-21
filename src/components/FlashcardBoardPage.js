@@ -1,23 +1,16 @@
 import React from 'react';
-import moment from 'moment';
 import { connect } from 'react-redux';
+import moment from 'moment';
+import { startEditFlashcard } from '../actions/flashcards';
+
 
 export class FlashcardBoardPage extends React.Component {
-    // state = {
-    //     isFlipped: [],
-    //     cardInAction: null,
-    //     sequenceRunning: false,
-    //     mainCardBeingPlayed: null,
-    //     i: 0,
-    //     j: 1,
-    //     speed: null,
-    //     checked: null,
-    //     secondTime: null
-    // };
     constructor(props) {
         super(props); 
-
-        this.state = {
+          this.state = {
+            difficulty: props.flashcard ? props.flashcard.difficulty : '',
+            lastStudiedAt: moment(props.flashcard.lastStudiedAt),
+            id: props.flashcard ? props.flashcard.id : '',
             isFlipped: [],
             cardInAction: null,
             sequenceRunning: false,
@@ -26,30 +19,7 @@ export class FlashcardBoardPage extends React.Component {
             j: 1,
             speed: null,
             checked: null,
-            secondTime: null,
-            title: props.flashcard ? props.flashcard.title : '',
-            difficulty: props.flashcard ? props.flashcard.difficulty : '',
-            englishone: props.flashcard ? props.flashcard.englishone : '',
-            englishtwo: props.flashcard ? props.flashcard.englishtwo : '',
-            englishthree: props.flashcard ? props.flashcard.englishthree : '',
-            englishfour: props.flashcard ? props.flashcard.englishfour : '',
-            englishfive: props.flashcard ? props.flashcard.englishfive : '',
-            englishsix: props.flashcard ? props.flashcard.englishsix : '',
-            englishseven: props.flashcard ? props.flashcard.englishseven : '',
-            englisheight: props.flashcard ? props.flashcard.englisheight : '',
-            englishnine: props.flashcard ? props.flashcard.englishnine : '',
-            spanishone: props.flashcard ? props.flashcard.spanishone : '',
-            spanishtwo: props.flashcard ? props.flashcard.spanishtwo : '',
-            spanishthree: props.flashcard ? props.flashcard.spanishthree : '',
-            spanishfour: props.flashcard ? props.flashcard.spanishfour : '',
-            spanishfive: props.flashcard ? props.flashcard.spanishfive : '',
-            spanishsix: props.flashcard ? props.flashcard.spanishsix : '',
-            spanishseven: props.flashcard ? props.flashcard.spanishseven : '',
-            spanisheight: props.flashcard ? props.flashcard.spanisheight : '',
-            spanishnine: props.flashcard ? props.flashcard.spanishnine : '',
-            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
-            calendarFocused: false,
-            error: ''
+            secondTime: null
         };
     }
     onStart = () => {
@@ -107,11 +77,10 @@ export class FlashcardBoardPage extends React.Component {
             this.setState({ mainCardBeingPlayed: mainCardBeingPlayedCopy })
         }
     }, timer);
+    if (this.state.secondTime === 17) {
+        this.props.startEditFlashcard(this.props.flashcard.id, { lastStudiedAt: Date.now() });
+    }
 };
-onDifficultyChange = (e) => {
-    const difficulty = e.target.value;
-    this.setState(() => ({ difficulty }));
-}; 
 onClickFlipOne = () => {
     if (!this.state.isFlipped.includes(1)) {
         this.setState({ isFlipped:  this.state.isFlipped.concat(1) })
@@ -183,6 +152,10 @@ onStartLocChange = (e) => {
 }
 onSpeedChange = (e) => {
     this.setState({ speed: e.target.value })
+}
+onDifficultyChange = (e) => {
+    this.setState({ difficulty: e.target.value })
+    this.props.startEditFlashcard(this.props.flashcard.id, { difficulty: e.target.value });
 }
 render() {
     return (
@@ -302,6 +275,22 @@ render() {
             </div>
             </div>
             <button onClick={this.onStart} disabled={!this.state.speed || !this.state.mainCardBeingPlayed}>Start</button><br/>
+            <div className="difficulty-ranges">
+            <div>
+            <input type="radio" id="opteight" name="diffstr" value="1036800000" checked={this.state.difficulty === "86400000"} onChange={this.onDifficultyChange}/>
+            <label> Easy </label>
+            </div>
+            <div>
+            <input type="radio" id="opteight" name="diffstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
+            <label> Medium </label>
+            </div>
+            <div>
+            <input type="radio" id="opteight" name="diffstr" value="86400000" onChange={this.onDifficultyChange} checked={this.state.difficulty === "1036800000"}/>
+            <label> Difficult </label>
+            </div>
+            </div>
+            </div>
+            <div>
         </div>
         </div>
         </div>
@@ -312,10 +301,8 @@ const mapStateToProps = (state, props) => ({
     flashcard: state.flashcards.find((flashcard) => flashcard.id === props.match.params.id )
 });
 
-
-const mapDispatchToProps = (dispatch, props) => ({
+const mapDispatchToProps = (dispatch) => ({
     startEditFlashcard: (id, flashcard) => dispatch(startEditFlashcard(id, flashcard)),
 });
 
-
-export default connect(mapStateToProps)(FlashcardBoardPage);
+export default connect(mapStateToProps, mapDispatchToProps)(FlashcardBoardPage);

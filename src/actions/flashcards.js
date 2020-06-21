@@ -31,7 +31,8 @@ export const startAddFlashcard = (flashcardData = {}) => {
             spanishnine = '',
             difficulty = '',
             title = '', 
-            createdAt = 0
+            createdAt = 0,
+            lastStudiedAt = 0
         } = flashcardData;
         const flashcard = { 
             englishone, 
@@ -54,7 +55,8 @@ export const startAddFlashcard = (flashcardData = {}) => {
             spanisheight,
             spanishnine,
             title,
-            createdAt 
+            createdAt, 
+            lastStudiedAt
         }
        return database.ref(`users/${uid}/flashcards`).push(flashcard).then((ref) => {
             dispatch(addFlashcard({
