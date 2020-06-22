@@ -7,10 +7,16 @@ export const addFlashcard = (flashcard) => ({
     flashcard
 });
 
+export const addFlashcardUni = (flashcard) => ({
+    type: 'ADD_FLASHCARD_UNI',
+    flashcard
+});
+
 export const startAddFlashcard = (flashcardData = {}) => {
     return (dispatch, getState) => {
         const uid = getState().auth.uid;
         const {
+            universal = false,
             englishone = '', 
             englishtwo = '',
             englishthree = '',
@@ -35,6 +41,7 @@ export const startAddFlashcard = (flashcardData = {}) => {
             lastStudiedAt = 0
         } = flashcardData;
         const flashcard = { 
+            universal,
             englishone, 
             englishtwo, 
             difficulty,
@@ -60,6 +67,67 @@ export const startAddFlashcard = (flashcardData = {}) => {
         }
        return database.ref(`users/${uid}/flashcards`).push(flashcard).then((ref) => {
             dispatch(addFlashcard({
+                id: ref.key,
+                ...flashcard
+            }));
+        })
+    }
+}
+
+export const startAddFlashcardsUniversal = (flashcardData = {}) => {
+    return (dispatch) => {
+        const {
+            universal = true,
+            englishone = '', 
+            englishtwo = '',
+            englishthree = '',
+            englishfour = '',
+            englishfive = '',
+            englishsix = '',
+            englishseven = '',
+            englisheight = '',
+            englishnine = '',
+            spanishone = '',
+            spanishtwo = '',
+            spanishthree = '',
+            spanishfour = '',
+            spanishfive = '',
+            spanishsix = '',
+            spanishseven = '',
+            spanisheight = '',
+            spanishnine = '',
+            difficulty = '',
+            title = '', 
+            createdAt = 0,
+            lastStudiedAt = 0
+        } = flashcardData;
+        const flashcard = { 
+            universal,
+            englishone, 
+            englishtwo, 
+            difficulty,
+            englishthree, 
+            englishfour, 
+            englishfive, 
+            englishsix, 
+            englishseven,
+            englisheight,
+            englishnine,
+            spanishone,
+            spanishtwo,
+            spanishthree,
+            spanishfour,
+            spanishfive,
+            spanishsix,
+            spanishseven,
+            spanisheight,
+            spanishnine,
+            title,
+            createdAt, 
+            lastStudiedAt
+        }
+       return database.ref(`flashcardsuniversal`).push(flashcard).then((ref) => {
+            dispatch(addFlashcardUni({
                 id: ref.key,
                 ...flashcard
             }));

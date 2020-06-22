@@ -10,7 +10,7 @@ export const FlashcardList = (props) => (
         <div className="show-for-mobile">Flash</div>
         <div className="show-for-desktop">Flashcards</div>
     </div>
-        <div className="list-body">                 
+        <div className="list-body"> 
             {
                 props.flashcards.length === 0 ? (
                     <div className="list-item list-item--message">

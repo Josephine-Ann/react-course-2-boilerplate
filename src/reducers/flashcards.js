@@ -7,6 +7,11 @@ export default (state = flashcardsReducerDefaultState, action) => {
             ...state,
             action.flashcard
         ];
+        case 'ADD_FLASHCARD_UNI':
+        return [
+            ...state.slice(0, state.length),
+            action.flashcard
+        ];
         case 'REMOVE_FLASHCARD':
             return state.filter(({ id }) => id !== action.id);
             case 'EDIT_FLASHCARD':

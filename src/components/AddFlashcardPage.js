@@ -2,11 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FlashcardForm from './FlashcardForm';
 import { startAddFlashcard } from '../actions/flashcards'
+import { startAddFlashcardsUniversal } from '../actions/flashcards'
+
 
 export class AddFlashcardPage extends React.Component {
     onSubmit = (flashcard) => {
     this.props.startAddFlashcard(flashcard);
     this.props.history.push('/');
+    if (flashcard.universal) {
+        this.props.startAddFlashcardsUniversal(flashcard);
+    }
     };
     render() {
         return (
@@ -27,7 +32,10 @@ export class AddFlashcardPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    startAddFlashcard: (flashcard) => dispatch(startAddFlashcard(flashcard))
+    startAddFlashcard: (flashcard) => dispatch(startAddFlashcard(flashcard)),
+    startAddFlashcardsUniversal: (flashcard) => dispatch(startAddFlashcardsUniversal(flashcard))
 });
+
+
 
 export default connect(undefined, mapDispatchToProps)(AddFlashcardPage);

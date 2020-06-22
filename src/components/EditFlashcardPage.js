@@ -10,6 +10,9 @@ export class EditFlashcardPage extends React.Component {
     };
     onSubmit = (flashcard) => {
         this.props.startEditFlashcard(this.props.flashcard.id, flashcard);
+        if (flashcard.universal) {
+            this.props.startAddFlashcard(flashcard);
+        }
         this.props.history.push('/');
     };
     onRemove = () => {
@@ -45,7 +48,8 @@ export class EditFlashcardPage extends React.Component {
     }
 }
 const mapStateToProps = (state, props) => ({
-    flashcard: state.flashcards.find((flashcard) => flashcard.id === props.match.params.id )
+    flashcard: state.flashcards.find((flashcard) => flashcard.id === props.match.params.id ),
+    startAddFlashcardsUniversal: (flashcard) => dispatch(startAddFlashcardsUniversal(flashcard))
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

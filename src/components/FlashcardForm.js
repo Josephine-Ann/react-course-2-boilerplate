@@ -9,6 +9,7 @@ export default class FlashcardForm extends React.Component {
         super(props); 
 
         this.state = {
+            universal: props.flashcard ? props.flashcard.universal : '',
             title: props.flashcard ? props.flashcard.title : '',
             difficulty: props.flashcard ? props.flashcard.difficulty : '',
             englishone: props.flashcard ? props.flashcard.englishone : '',
@@ -115,6 +116,12 @@ export default class FlashcardForm extends React.Component {
         const difficulty = e.target.value;
         this.setState(() => ({ difficulty }));
     }; 
+    onUniversalChange = (e) => {
+        let universalBoolean = e.target.value
+        universalBoolean = parseInt(universalBoolean, 10)
+        universalBoolean = !!universalBoolean
+        this.setState(() => ({ universal: universalBoolean }));
+    }; 
     onDateChange = (createdAt) => {
         if (createdAt) {
             this.setState(() => ({ createdAt }));
@@ -131,6 +138,7 @@ export default class FlashcardForm extends React.Component {
         } else {
             this.setState(() => ({ error: "" }));
             this.props.onSubmit({
+                universal: this.state.universal,
                 title: this.state.title,
                 lastStudiedAt: this.state.lastStudiedAt.valueOf(),
                 difficulty: this.state.difficulty,
@@ -172,6 +180,16 @@ export default class FlashcardForm extends React.Component {
             <div>
             <input type="radio" id="opteight" name="optstr" value="1036800000" onChange={this.onDifficultyChange} checked={this.state.difficulty === "1036800000"}/>
             <label> Difficult </label>
+            </div>
+            </div>
+            <div className="universal">
+            <div>
+            <input type="radio" id="not-universal" name="universal" value="0" onChange={this.onUniversalChange}/>
+            <label> Just for me </label>
+            </div>
+            <div>
+            <input type="radio" id="universal" name="universal" value="1" onChange={this.onUniversalChange}/>
+            <label> Share it! </label>
             </div>
             </div>
             <input

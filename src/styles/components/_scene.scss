@@ -31,14 +31,14 @@
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 9px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   line-height: 65px;
   @media (min-width: $desktop-breakpoint) {
     line-height: 95px;
-    font-size: 20px;
-}
+    font-size: 14px;
+  }
 }
 
 .difficulty-ranges {
@@ -53,7 +53,7 @@
   @media (min-width: $desktop-breakpoint) {
     display: flex;
     align-items: flex-start;
-    margin-left: 50px;
+    margin-left: 290px;
 
 }
 button {
