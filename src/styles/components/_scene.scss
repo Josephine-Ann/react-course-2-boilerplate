@@ -39,9 +39,11 @@
 }
 
 .page {
+  margin-left: 0px;
   @media (min-width: $desktop-breakpoint) {
     display: flex;
     align-items: flex-start;
+    margin-left: 50px;
 
 }
 button {
@@ -165,6 +167,3 @@ button {
   }
 }
 
-.page {
-  margin-left: 50px;
-}
