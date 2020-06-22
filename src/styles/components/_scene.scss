@@ -1,8 +1,13 @@
 .scene {
-  width: 130px;
-  height: 130px;
+  @media (min-width: $desktop-breakpoint) {
+    width: 130px;
+    height: 130px;
+}
+  
   border: 1px solid #CCC;
   perspective: 600px;
+  width: 100px;
+  height: 100px;
 }
 
 .card {
@@ -26,9 +31,14 @@
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  line-height: 65px;
+  @media (min-width: $desktop-breakpoint) {
+    line-height: 95px;
+    font-size: 20px;
+}
 }
 
 .difficulty-ranges {
