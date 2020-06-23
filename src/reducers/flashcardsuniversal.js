@@ -7,7 +7,7 @@ export default (state = flashcardsUniversalReducerDefaultState, action) => {
             ...state,
             action.flashcardsuniversal
         ];
-        case 'REMOVE_FLASHCARD':
+        case 'REMOVE_FLASHCARD_UNI':
             return state.filter(({ id }) => id !== action.id);
         case 'SET_FLASHCARDS_UNI':
             return action.flashcardsuniversal;  

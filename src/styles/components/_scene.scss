@@ -37,7 +37,7 @@
   line-height: 65px;
   @media (min-width: $desktop-breakpoint) {
     line-height: 95px;
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
@@ -53,9 +53,10 @@
   @media (min-width: $desktop-breakpoint) {
     display: flex;
     align-items: flex-start;
-    margin-left: 290px;
+    margin-left: 260px;
 
 }
+
 button {
   width: 290px;
   border-radius: 0;
@@ -84,7 +85,7 @@ button {
   margin-left: 18px;
   margin-right: 40px;
   @media (min-width: $desktop-breakpoint) {
-    margin-left: 40px;
+    margin-left: 80px;
     margin-top: 15px;
   }
 }
@@ -94,7 +95,7 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  width: 336px;
+    width: 426px;
 }
 
 .grid {

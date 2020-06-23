@@ -14,7 +14,7 @@ export const FlashcardsSummary = ({ visibleFlashcardCount, invisibleFlashcardCou
         <h1 className="page-header__title">Hidden <span>{invisibleFlashcardCount}</span> {invisibleFlashcardWord}</h1>
         <div className="page-header__actions">
           <Link className="button" to="/create">Add Flashcards</Link>
-          <Link className="button" to="/universaldashboardpage">See Universal Flashcards</Link>
+          <Link className="button" to="/universaldashboardpage">See Shared Flashcards</Link>
         </div>
       </div>
     </div>
