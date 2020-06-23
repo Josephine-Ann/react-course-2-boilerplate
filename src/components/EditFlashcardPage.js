@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FlashcardForm from './FlashcardForm';
 import { startEditFlashcard, startRemoveFlashcard } from '../actions/flashcards';
+import { startAddFlashcardsUniversal } from '../actions/flashcardsuniversal';
 import DeleteModal from './DeleteModal'
 
 export class EditFlashcardPage extends React.Component {
@@ -10,8 +11,8 @@ export class EditFlashcardPage extends React.Component {
     };
     onSubmit = (flashcard) => {
         this.props.startEditFlashcard(this.props.flashcard.id, flashcard);
-        if (flashcard.universal) {
-            this.props.startAddFlashcard(flashcard);
+        if (flashcard.putInUniversal === 2) {
+            this.props.startAddFlashcardsUniversal(flashcard);
         }
         this.props.history.push('/');
     };
@@ -49,12 +50,12 @@ export class EditFlashcardPage extends React.Component {
 }
 const mapStateToProps = (state, props) => ({
     flashcard: state.flashcards.find((flashcard) => flashcard.id === props.match.params.id ),
-    startAddFlashcardsUniversal: (flashcard) => dispatch(startAddFlashcardsUniversal(flashcard))
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
     startEditFlashcard: (id, flashcard) => dispatch(startEditFlashcard(id, flashcard)),
-     startRemoveFlashcard: (id) => dispatch(startRemoveFlashcard(id))
+    startRemoveFlashcard: (id) => dispatch(startRemoveFlashcard(id)),
+    startAddFlashcardsUniversal: (flashcard) => dispatch(startAddFlashcardsUniversal(flashcard))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditFlashcardPage);

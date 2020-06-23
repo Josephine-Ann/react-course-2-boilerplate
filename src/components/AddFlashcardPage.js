@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import FlashcardForm from './FlashcardForm';
 import { startAddFlashcard } from '../actions/flashcards'
-import { startAddFlashcardsUniversal } from '../actions/flashcards'
+import { startAddFlashcardsUniversal } from '../actions/flashcardsuniversal'
 
 
 export class AddFlashcardPage extends React.Component {

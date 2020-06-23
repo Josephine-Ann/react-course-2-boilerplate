@@ -4,13 +4,13 @@ import moment from 'moment';
 import { startEditFlashcard } from '../actions/flashcards';
 
 
-export class FlashcardBoardPage extends React.Component {
+export class FlashcardsUniversalBoardPage extends React.Component {
     constructor(props) {
         super(props); 
           this.state = {
-            difficulty: props.flashcard ? props.flashcard.difficulty : '',
-            lastStudiedAt: moment(props.flashcard.lastStudiedAt),
-            id: props.flashcard ? props.flashcard.id : '',
+            difficulty: props.flashcardsuniversal ? props.flashcardsuniversal.difficulty : '',
+            lastStudiedAt: moment(props.flashcardsuniversal.lastStudiedAt),
+            id: props.flashcardsuniversal ? props.flashcardsuniversal.id : '',
             isFlipped: [],
             cardInAction: null,
             sequenceRunning: false,
@@ -78,7 +78,7 @@ export class FlashcardBoardPage extends React.Component {
         }
     }, timer);
     if (this.state.secondTime === 17) {
-        this.props.startEditFlashcard(this.props.flashcard.id, { lastStudiedAt: Date.now() });
+        this.props.startEditflashcardsuniversal(this.props.flashcardsuniversal.id, { lastStudiedAt: Date.now() });
     }
 };
 onClickFlipOne = () => {
@@ -155,7 +155,7 @@ onSpeedChange = (e) => {
 }
 onDifficultyChange = (e) => {
     this.setState({ difficulty: e.target.value })
-    this.props.startEditFlashcard(this.props.flashcard.id, { difficulty: e.target.value });
+    this.props.startEditflashcardsuniversal(this.props.flashcardsuniversal.id, { difficulty: e.target.value });
 }
 render() {
     return (
@@ -167,60 +167,60 @@ render() {
         <div className="row">
             <div className="scene scene--card">
             <div className={this.state.isFlipped.includes(1) ? "card is-flipped" : "card"}>
-            <div className={this.state.cardInAction === "1" && this.state.sequenceRunning === true  ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"} onClick={this.onClickFlipOne}><p>{this.props.flashcard.englishone}</p></div>
-            <div className={this.state.cardInAction === "1" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"}  onClick={this.onClickFlipOne}><p>{this.props.flashcard.spanishone}</p></div>
+            <div className={this.state.cardInAction === "1" && this.state.sequenceRunning === true  ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"} onClick={this.onClickFlipOne}><p>{this.props.flashcardsuniversal.englishone}</p></div>
+            <div className={this.state.cardInAction === "1" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"}  onClick={this.onClickFlipOne}><p>{this.props.flashcardsuniversal.spanishone}</p></div>
             </div>
             </div>
             <div className="scene scene--card">
             <div className={this.state.isFlipped.includes(2) ? "card is-flipped" : "card"}>
-            <div className={this.state.cardInAction === "2" && this.state.sequenceRunning === true  ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipTwo}><p>{this.props.flashcard.englishtwo}</p></div>
-            <div className={this.state.cardInAction === "2" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipTwo}><p>{this.props.flashcard.spanishtwo}</p></div>
+            <div className={this.state.cardInAction === "2" && this.state.sequenceRunning === true  ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipTwo}><p>{this.props.flashcardsuniversal.englishtwo}</p></div>
+            <div className={this.state.cardInAction === "2" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipTwo}><p>{this.props.flashcardsuniversal.spanishtwo}</p></div>
             </div>
             </div>
             <div className="scene scene--card">
             <div className={this.state.isFlipped.includes(3) ? "card is-flipped" : "card"}>
-            <div className={this.state.cardInAction === "3" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipThree}><p>{this.props.flashcard.englishthree}</p></div>
-            <div className={this.state.cardInAction === "3" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipThree}><p>{this.props.flashcard.spanishthree}</p></div>
+            <div className={this.state.cardInAction === "3" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipThree}><p>{this.props.flashcardsuniversal.englishthree}</p></div>
+            <div className={this.state.cardInAction === "3" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipThree}><p>{this.props.flashcardsuniversal.spanishthree}</p></div>
             </div>
             </div>
             </div>
         <div className="row">
             <div className="scene scene--card">
             <div className={this.state.isFlipped.includes(4) ? "card is-flipped" : "card"}>
-            <div className={this.state.cardInAction === "4" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipFour}><p>{this.props.flashcard.englishfour}</p></div>
-            <div className={this.state.cardInAction === "4" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipFour}><p>{this.props.flashcard.spanishfour}</p></div>
+            <div className={this.state.cardInAction === "4" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipFour}><p>{this.props.flashcardsuniversal.englishfour}</p></div>
+            <div className={this.state.cardInAction === "4" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipFour}><p>{this.props.flashcardsuniversal.spanishfour}</p></div>
             </div>
             </div>
             <div className="scene scene--card">
             <div className={this.state.isFlipped.includes(5) ? "card is-flipped" : "card"}>
-            <div className={this.state.cardInAction === "5" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipFive}><p>{this.props.flashcard.englishfive}</p></div>
-            <div className={this.state.cardInAction === "5" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipFive}><p>{this.props.flashcard.spanishfive}</p></div>
+            <div className={this.state.cardInAction === "5" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipFive}><p>{this.props.flashcardsuniversal.englishfive}</p></div>
+            <div className={this.state.cardInAction === "5" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipFive}><p>{this.props.flashcardsuniversal.spanishfive}</p></div>
             </div>
             </div>
             <div className="scene scene--card">
             <div className={this.state.isFlipped.includes(6) ? "card is-flipped" : "card"}>
-            <div className={this.state.cardInAction === "6" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipSix}><p>{this.props.flashcard.englishsix}</p></div>
-            <div className={this.state.cardInAction === "6" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipSix}><p>{this.props.flashcard.spanishsix}</p></div>
+            <div className={this.state.cardInAction === "6" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipSix}><p>{this.props.flashcardsuniversal.englishsix}</p></div>
+            <div className={this.state.cardInAction === "6" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipSix}><p>{this.props.flashcardsuniversal.spanishsix}</p></div>
             </div>
             </div>
         </div>
         <div className="row">
         <div className="scene scene--card">
         <div className={this.state.isFlipped.includes(7) ? "card is-flipped" : "card"}>
-        <div className={this.state.cardInAction === "7" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipSeven}><p>{this.props.flashcard.englishseven}</p></div>
-        <div className={this.state.cardInAction === "7" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipSeven}><p>{this.props.flashcard.spanishseven}</p></div>
+        <div className={this.state.cardInAction === "7" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipSeven}><p>{this.props.flashcardsuniversal.englishseven}</p></div>
+        <div className={this.state.cardInAction === "7" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipSeven}><p>{this.props.flashcardsuniversal.spanishseven}</p></div>
         </div>
         </div>
         <div className="scene scene--card">
         <div className={this.state.isFlipped.includes(8) ? "card is-flipped" : "card"}>
-        <div className={this.state.cardInAction === "8" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipEight}><p>{this.props.flashcard.englisheight}</p></div>
-        <div className={this.state.cardInAction === "8" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipEight}><p>{this.props.flashcard.spanisheight}</p></div>
+        <div className={this.state.cardInAction === "8" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipEight}><p>{this.props.flashcardsuniversal.englisheight}</p></div>
+        <div className={this.state.cardInAction === "8" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipEight}><p>{this.props.flashcardsuniversal.spanisheight}</p></div>
         </div>
         </div>
         <div className="scene scene--card">
         <div className={this.state.isFlipped.includes(9) ? "card is-flipped" : "card"}>
-        <div className={this.state.cardInAction === "9" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipNine}><p>{this.props.flashcard.englishnine}</p></div>
-        <div className={this.state.cardInAction === "9" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipNine}><p>{this.props.flashcard.spanishnine}</p></div>
+        <div className={this.state.cardInAction === "9" && this.state.sequenceRunning === true ? "card__face card__face--front keyFrameDiv" : "card__face card__face--front"}  onClick={this.onClickFlipNine}><p>{this.props.flashcardsuniversal.englishnine}</p></div>
+        <div className={this.state.cardInAction === "9" && this.state.sequenceRunning === true ? "card__face card__face--back keyFrameDiv" : "card__face card__face--back"} onClick={this.onClickFlipNine}><p>{this.props.flashcardsuniversal.spanishnine}</p></div>
         </div>
         </div>
         </div>
@@ -239,39 +239,39 @@ render() {
             <div className="radio-button-container">
             <div className="radio-starting-point">
             <input type="radio" id="optone" name="optstr" value="1" checked={this.state.checked === 1} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
-            <label> {this.props.flashcard.spanishone} </label>
+            <label> {this.props.flashcardsuniversal.spanishone} </label>
             </div>
             <div className="radio-starting-point">
             <input type="radio" id="opttwo" name="optstr" value="2" checked={this.state.checked === 2} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
-            <label> {this.props.flashcard.spanishtwo} </label>
+            <label> {this.props.flashcardsuniversal.spanishtwo} </label>
             </div>
             <div className="radio-starting-point">
             <input type="radio" id="optthree" name="optstr" value="3" checked={this.state.checked === 3} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
-            <label> {this.props.flashcard.spanishthree} </label>
+            <label> {this.props.flashcardsuniversal.spanishthree} </label>
             </div>
             <div className="radio-starting-point">
             <input type="radio" id="optfour" name="optstr" value="4" checked={this.state.checked === 4} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
-            <label> {this.props.flashcard.spanishfour} </label>
+            <label> {this.props.flashcardsuniversal.spanishfour} </label>
             </div>
             <div className="radio-starting-point">
             <input type="radio" id="optfive" name="optstr" value="5" checked={this.state.checked === 5} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
-            <label> {this.props.flashcard.spanishfive} </label>
+            <label> {this.props.flashcardsuniversal.spanishfive} </label>
             </div>
             <div className="radio-starting-point">
             <input type="radio" id="optsix" name="optstr" value="6" checked={this.state.checked === 6} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
-            <label> {this.props.flashcard.spanishsix} </label>
+            <label> {this.props.flashcardsuniversal.spanishsix} </label>
             </div>
             <div className="radio-starting-point">
             <input type="radio" id="optseven" name="optstr" value="7" checked={this.state.checked === 7} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
-            <label> {this.props.flashcard.spanishseven} </label>
+            <label> {this.props.flashcardsuniversal.spanishseven} </label>
             </div>
             <div className="radio-starting-point">
             <input type="radio" id="opteight" name="optstr" value="8" checked={this.state.checked === 8} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
-            <label> {this.props.flashcard.spanisheight} </label>
+            <label> {this.props.flashcardsuniversal.spanisheight} </label>
             </div>
             <div className="radio-starting-point">
             <input type="radio" id="optnine" name="optstr" value="9" checked={this.state.checked === 9} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
-            <label> {this.props.flashcard.spanishnine} </label>
+            <label> {this.props.flashcardsuniversal.spanishnine} </label>
             </div>
             </div>
             <button onClick={this.onStart} disabled={!this.state.speed || !this.state.mainCardBeingPlayed}>Start</button><br/>
@@ -298,12 +298,11 @@ render() {
     }
 };
 const mapStateToProps = (state, props) => ({
-    flashcard: state.flashcards.find((flashcard) => flashcard.id === props.match.params.id ),
-    flashcardsuniversal: state.flashcardsuniversal.find((flashcard) => flashcard.id === props.match.params.id )
+    flashcardsuniversal: state.flashcardsuniversal.find((flashcardsuniversal) => flashcardsuniversal.id === props.match.params.id )
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    startEditFlashcard: (id, flashcard) => dispatch(startEditFlashcard(id, flashcard)),
+    startEditFlashcard: (id, flashcardsuniversal) => dispatch(startEditflashcardsuniversal(id, flashcardsuniversal)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FlashcardBoardPage);
+export default connect(mapStateToProps, mapDispatchToProps)(FlashcardsUniversalBoardPage);

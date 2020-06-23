@@ -9,6 +9,7 @@ export default class FlashcardForm extends React.Component {
         super(props); 
 
         this.state = {
+            putInUniversal: props.flashcard ? props.flashcard.universal : 0,
             universal: props.flashcard ? props.flashcard.universal : '',
             title: props.flashcard ? props.flashcard.title : '',
             difficulty: props.flashcard ? props.flashcard.difficulty : '',
@@ -121,6 +122,7 @@ export default class FlashcardForm extends React.Component {
         universalBoolean = parseInt(universalBoolean, 10)
         universalBoolean = !!universalBoolean
         this.setState(() => ({ universal: universalBoolean }));
+        this.setState(() => ({ putInUniversal: 1 }));
     }; 
     onDateChange = (createdAt) => {
         if (createdAt) {
@@ -160,7 +162,8 @@ export default class FlashcardForm extends React.Component {
                 spanishsix: this.state.spanishsix,
                 spanishseven: this.state.spanishseven,
                 spanisheight: this.state.spanisheight,
-                spanishnine: this.state.spanishnine
+                spanishnine: this.state.spanishnine,
+                putInUniversal: this.state.putInUniversal + 1
              })
         }
     }
@@ -174,7 +177,7 @@ export default class FlashcardForm extends React.Component {
             <label> Easy </label>
             </div>
             <div>
-            <input type="radio" id="opteight" name="optstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
+            <input type="radio" id="opteight" name="optstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange} />
             <label> Medium </label>
             </div>
             <div>
@@ -182,16 +185,17 @@ export default class FlashcardForm extends React.Component {
             <label> Difficult </label>
             </div>
             </div>
-            <div className="universal">
+            <div className="universal difficulty-ranges">
             <div>
-            <input type="radio" id="not-universal" name="universal" value="0" onChange={this.onUniversalChange}/>
+            <input type="radio" id="not-universal" name="universal" value="0" checked={this.state.universal === false } onChange={this.onUniversalChange} disabled={this.state.universal}/>
             <label> Just for me </label>
             </div>
             <div>
-            <input type="radio" id="universal" name="universal" value="1" onChange={this.onUniversalChange}/>
+            <input type="radio" id="universal" name="universal" value="1" checked={this.state.universal === true } onChange={this.onUniversalChange} disabled={this.state.universal}/>
             <label> Share it! </label>
             </div>
             </div>
+            <p>Once shared, lists cannot be edited or deleted.</p>
             <input
             type="text"
             placeholder="Title"
