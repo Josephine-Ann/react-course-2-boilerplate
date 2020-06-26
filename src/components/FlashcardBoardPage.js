@@ -277,7 +277,7 @@ render() {
             <button onClick={this.onStart} disabled={!this.state.speed || !this.state.mainCardBeingPlayed}>Start</button><br/>
             <div className="difficulty-ranges">
             <div>
-            <input type="radio" id="opteight" name="diffstr" value="1036800000" checked={this.state.difficulty === "86400000"} onChange={this.onDifficultyChange}/>
+            <input type="radio" id="opteight" name="diffstr" value="86400000" checked={this.state.difficulty === "86400000"}  onChange={this.onDifficultyChange}/>
             <label> Easy </label>
             </div>
             <div>
@@ -285,7 +285,7 @@ render() {
             <label> Medium </label>
             </div>
             <div>
-            <input type="radio" id="opteight" name="diffstr" value="86400000" onChange={this.onDifficultyChange} checked={this.state.difficulty === "1036800000"}/>
+            <input type="radio" id="opteight" name="diffstr" value="1036800000" checked={this.state.difficulty === "1036800000"} onChange={this.onDifficultyChange}/>
             <label> Difficult </label>
             </div>
             </div>

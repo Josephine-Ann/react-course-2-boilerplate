@@ -31,7 +31,7 @@ export class UniversalListItem extends React.Component {
             spanisheight: props.spanisheight,
             spanishnine: props.spanishnine,
             lastStudiedAt: 0,
-            putInUniversal: 1,
+            putInUniversal: 1
         };
     }
     onClick = () => {
@@ -61,7 +61,6 @@ export class UniversalListItem extends React.Component {
                 spanishnine: this.state.spanishnine,
                 putInUniversal: this.state.putInUniversal + 1
              })
-             console.log("From onSubmit")
         }
     render () {
         return (  
@@ -81,12 +80,4 @@ export class UniversalListItem extends React.Component {
         }
     }
                 
-
-    // const mapStateToProps = (state, ownProps) => {
-    //     return { 
-    //        flashcard: state.
-    //    };
-    // };
-   
-    // export default connect(mapStateToProps)(UniversalListItem);
-export default UniversalListItem
+    export default UniversalListItem
