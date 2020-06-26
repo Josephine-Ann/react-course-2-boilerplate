@@ -69,11 +69,8 @@ export class UniversalListItem extends React.Component {
                         <h3 className={"list-item__title" }>{this.state.title}</h3>
                         <span className={"list-item__sub-title" }>{moment(this.state.createdAt).format('MMMM Do, YYYY')}</span>
                     </Link>
-                    <Link to={`/edit/${this.state.id}`}>
-                    Edit
-                    </Link>
-                    <button onClick={this.onClick}>Add to my list</button>
                     <div className={"list-item__data"}>
+                    <button className={"add-button"} onClick={this.onClick}>Add to my list</button>
                         </div>
                     </div>
                 )

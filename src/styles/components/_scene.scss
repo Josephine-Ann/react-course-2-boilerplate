@@ -70,11 +70,23 @@ button {
 
 .card__face--front {
   background: $dark-blue;
+  p {
+    line-height: 23px;
+    font-size: 15px;
+    padding: 4px;
+    word-wrap:break-word;
+  }
 }
 
 .card__face--back {
   background: $dark-blue;;
   transform: rotateY(180deg);
+  p {
+    line-height: 23px;
+    font-size: 15px;
+    padding: 4px;
+    word-wrap:break-word;
+  }
 }
 
 .row {
