@@ -160,7 +160,7 @@ onDifficultyChange = (e) => {
 render() {
     return (
         <div>
-        {(typeof this.state.secondTime !== "number" ) && <p className="para-instruc-start">Program your settings, hit start and say the word in English when the card flashes grey!</p>}
+        {(typeof this.state.secondTime !== "number" ) && <p className="para-instruc-start">Program your settings below, hit start and say the word in English when the card flashes grey!</p>}
         {(this.state.secondTime) && <p className="para-instruc-start">Continue to say the word in English, even though you see it in Spanish!</p>}
         <div className="page">
         <div className="grid">
