@@ -39,88 +39,118 @@ export default class FlashcardForm extends React.Component {
     }
     onTitleChange = (e) => {
         const title = e.target.value;
-        this.setState(() => ({ title }));
+        if (title.match(/^.{0,36}$/)) {
+            this.setState(() => ({ title }));
+
+        }
     };
     onEnglishOneChange = (e) => {
         const englishone = e.target.value;
+        if (englishone.match(/^.{0,36}$/)) {
             this.setState(() => ({ englishone }));
+        }
     };
     onEnglishTwoChange = (e) => {
         const englishtwo = e.target.value;
+        if (englishtwo.match(/^.{0,36}$/)) {
             this.setState(() => ({ englishtwo }));
+        }
     };
     onEnglishThreeChange = (e) => {
         const englishthree = e.target.value;
+        if (englishthree.match(/^.{0,36}$/)) {
             this.setState(() => ({ englishthree }));
+        }
     };
     onEnglishFourChange = (e) => {
         const englishfour = e.target.value;
+        if (englishfour.match(/^.{0,36}$/)) {
             this.setState(() => ({ englishfour }));
+        }
     };
     onEnglishFiveChange = (e) => {
         const englishfive = e.target.value;
+        if (englishfive.match(/^.{0,36}$/)) {
             this.setState(() => ({ englishfive }));
+        }
     };
     onEnglishSixChange = (e) => {
         const englishsix = e.target.value;
+        if (englishsix.match(/^.{0,36}$/)) {
             this.setState(() => ({ englishsix }));
-
+        }
     };
     onEnglishSevenChange = (e) => {
         const englishseven = e.target.value;
+        if (englishseven.match(/^.{0,36}$/)) {
             this.setState(() => ({ englishseven }));
-        
+        }
     };
     onEnglishEightChange = (e) => {
         const englisheight = e.target.value;
+        if (englisheight.match(/^.{0,36}$/)) {
             this.setState(() => ({ englisheight }));
-        
+        }
     };
     onEnglishNineChange = (e) => {
         const englishnine = e.target.value;
+        if (englishnine.match(/^.{0,36}$/)) {
             this.setState(() => ({ englishnine }));
-        
+        }
     };
     onSpanishOneChange = (e) => {
         const spanishone = e.target.value;
-        if (title.match(/^[a-z]{0,36}$/)) {
+        if (spanishone.match(/^.{0,36}$/)) {
             this.setState(() => ({ spanishone }));
         }
     };
     onSpanishTwoChange = (e) => {
         const spanishtwo = e.target.value;
+        if (spanishtwo.match(/^.{0,36}$/)) {
             this.setState(() => ({ spanishtwo }));
-
+        }
     };
     onSpanishThreeChange = (e) => {
         const spanishthree = e.target.value;
+        if (spanishthree.match(/^.{0,36}$/)) {
             this.setState(() => ({ spanishthree }));
-        
+        }
     };
     onSpanishFourChange = (e) => {
         const spanishfour = e.target.value;
+        if (spanishfour.match(/^.{0,36}$/)) {
             this.setState(() => ({ spanishfour }));
-        
+        }
     };
     onSpanishFiveChange = (e) => {
         const spanishfive = e.target.value;
+        if (spanishfive.match(/^.{0,36}$/)) {
             this.setState(() => ({ spanishfive }));
+        }
     };
     onSpanishSixChange = (e) => {
         const spanishsix = e.target.value;
+        if (spanishsix.match(/^.{0,36}$/)) {
             this.setState(() => ({ spanishsix }));
+        }
     };
     onSpanishSevenChange = (e) => {
         const spanishseven = e.target.value;
+        if (spanishseven.match(/^.{0,36}$/)) {
             this.setState(() => ({ spanishseven }));
+        }
     };
     onSpanishEightChange = (e) => {
         const spanisheight = e.target.value;
+        if (spanisheight.match(/^.{0,36}$/)) {
             this.setState(() => ({ spanisheight }));
+        }
     };
     onSpanishNineChange = (e) => {
         const spanishnine = e.target.value;
+        if (spanishnine.match(/^.{0,36}$/)) {
             this.setState(() => ({ spanishnine }));
+        }
     };
     onDifficultyChange = (e) => {
         const difficulty = e.target.value;
