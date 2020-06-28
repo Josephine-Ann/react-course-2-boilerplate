@@ -243,12 +243,18 @@ render() {
         <h1>Settings</h1>
         <p>Program your settings in order to start</p>
         <p className={"titles-instru"}>Speed</p>
+        <div>
         <input type="radio" id="1" name="speed" value="950" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Slow speed</label><br/>
+        </div>
+        <div>
         <input type="radio" id="2" name="speed" value="600" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Medium speed</label><br/>
+        </div>
+        <div>
         <input type="radio" id="3" name="speed" value="450" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Fast speed</label><br/>
+        </div>
         <p className={"titles-instru"}>Starting point</p>
             <div className="radio-button-container">
             <div className="radio-starting-point">

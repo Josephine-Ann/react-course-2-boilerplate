@@ -139,9 +139,9 @@ button {
 .radio-button-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-content: center;
     width: 426px;
+
 }
 
 .grid {
@@ -164,7 +164,10 @@ button {
 }
 
 .radio-starting-point {
-  width: 29.333%;
+  width: 51.33% !important;
+  @media (min-width: $desktop-breakpoint) {
+    width: 33.333%;
+  }
   margin-right: 15px;
 }
 
