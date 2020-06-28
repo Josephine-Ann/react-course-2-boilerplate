@@ -31,13 +31,11 @@
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 9px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   line-height: 65px;
   @media (min-width: $desktop-breakpoint) {
     line-height: 95px;
-    font-size: 16px;
   }
 }
 
@@ -70,22 +68,30 @@ button {
 
 .card__face--front {
   background: $dark-blue;
+  font-size: 10px;
   p {
     line-height: 23px;
-    font-size: 15px;
     padding: 4px;
     word-wrap:break-word;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    font-size: 15px;
   }
 }
 
 .card__face--back {
   background: $dark-blue;;
   transform: rotateY(180deg);
+  font-size: 10px;
+
   p {
     line-height: 23px;
-    font-size: 15px;
     padding: 4px;
     word-wrap:break-word;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    font-size: 15px;
+
   }
 }
 

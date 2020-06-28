@@ -39,7 +39,9 @@ export default class FlashcardForm extends React.Component {
     }
     onTitleChange = (e) => {
         const title = e.target.value;
+        if (title.match(/^[a-z]{0,36}$/)) {
         this.setState(() => ({ title }));
+        }
     };
     onEnglishOneChange = (e) => {
         const englishone = e.target.value;
