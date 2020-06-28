@@ -209,7 +209,7 @@ export default class FlashcardForm extends React.Component {
         return (
             <form className="form" onSubmit={this.onSubmit}>
             {this.state.error && <p className="form__error">{this.state.error}</p>}
-            <div className="difficulty-ranges">
+            <div className="difficulty-ranges-form">
             <div>
             <input type="radio" id="opteight" name="optstr" value="86400000" checked={this.state.difficulty === "86400000"} onChange={this.onDifficultyChange}/>
             <label> Easy </label>
@@ -223,7 +223,7 @@ export default class FlashcardForm extends React.Component {
             <label> Difficult </label>
             </div>
             </div>
-            <div className="universal difficulty-ranges">
+            <div className="universal difficulty-ranges-form">
             <div>
             <input type="radio" id="not-universal" name="universal" value="0" checked={this.state.universal === false } onChange={this.onUniversalChange} disabled={this.state.universal}/>
             <label> Just for me </label>

@@ -39,6 +39,18 @@
   }
 }
 
+.difficulty-ranges-form {
+  margin: 0px !important;
+  display: flex;
+  div {
+    margin-left: 5px;
+    margin-bottom: 5px;
+  }
+  label {
+    font-size: 12px;
+  }
+}
+
 .difficulty-ranges {
   display: flex;
   div {
