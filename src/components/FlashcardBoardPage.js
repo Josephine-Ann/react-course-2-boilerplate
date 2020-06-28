@@ -224,18 +224,32 @@ render() {
         </div>
         </div>
         </div>
+        <div className="difficulty-ranges">
+        <div>
+        <input type="radio" id="opteight" name="diffstr" value="86400000" checked={this.state.difficulty === "86400000"}  onChange={this.onDifficultyChange}/>
+        <label> Easy </label>
+        </div>
+        <div>
+        <input type="radio" id="opteight" name="diffstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
+        <label> Medium </label>
+        </div>
+        <div>
+        <input type="radio" id="opteight" name="diffstr" value="1036800000" checked={this.state.difficulty === "1036800000"} onChange={this.onDifficultyChange}/>
+        <label> Difficult </label>
+        </div>
+        </div>
         </div>
         <div className="ranges">
         <h1>Settings</h1>
         <p>Program your settings in order to start</p>
-        <p>Speed</p>
+        <p className={"titles-instru"}>Speed</p>
         <input type="radio" id="1" name="speed" value="950" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Slow speed</label><br/>
         <input type="radio" id="2" name="speed" value="600" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Medium speed</label><br/>
         <input type="radio" id="3" name="speed" value="450" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Fast speed</label><br/>
-        <p>Starting point</p>
+        <p className={"titles-instru"}>Starting point</p>
             <div className="radio-button-container">
             <div className="radio-starting-point">
             <input type="radio" id="optone" name="optstr" value="1" checked={this.state.checked === 1} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
@@ -275,20 +289,6 @@ render() {
             </div>
             </div>
             <button onClick={this.onStart} disabled={!this.state.speed || !this.state.mainCardBeingPlayed}>Start</button><br/>
-            <div className="difficulty-ranges">
-            <div>
-            <input type="radio" id="opteight" name="diffstr" value="86400000" checked={this.state.difficulty === "86400000"}  onChange={this.onDifficultyChange}/>
-            <label> Easy </label>
-            </div>
-            <div>
-            <input type="radio" id="opteight" name="diffstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
-            <label> Medium </label>
-            </div>
-            <div>
-            <input type="radio" id="opteight" name="diffstr" value="1036800000" checked={this.state.difficulty === "1036800000"} onChange={this.onDifficultyChange}/>
-            <label> Difficult </label>
-            </div>
-            </div>
             </div>
             <div>
         </div>

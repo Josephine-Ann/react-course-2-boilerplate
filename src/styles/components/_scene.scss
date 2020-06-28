@@ -44,6 +44,11 @@
   div {
     padding-right: 30px;
   }
+  label {
+    font-size: 12px;
+  }
+  margin-top: 60px;
+  margin-left: 90px;
 }
 
 .page {
@@ -106,6 +111,13 @@ button {
     margin-left: 80px;
     margin-top: 15px;
   }
+  label {
+    font-size: 12px;
+  }
+}
+
+.titles-instru {
+  font-weight: 1000px;
 }
 
 .radio-button-container {
@@ -136,7 +148,8 @@ button {
 }
 
 .radio-starting-point {
-  width: 33.333%
+  width: 29.333%;
+  margin-right: 15px;
 }
 
 .slidecontainer {

@@ -224,6 +224,20 @@ render() {
         </div>
         </div>
         </div>
+        <div className="difficulty-ranges">
+            <div>
+            <input type="radio" id="opteight" name="diffstr" value="1036800000" checked={this.state.difficulty === "86400000"} onChange={this.onDifficultyChange}/>
+            <label> Easy </label>
+            </div>
+            <div>
+            <input type="radio" id="opteight" name="diffstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
+            <label> Medium </label>
+            </div>
+            <div>
+            <input type="radio" id="opteight" name="diffstr" value="86400000" onChange={this.onDifficultyChange} checked={this.state.difficulty === "1036800000"}/>
+            <label> Difficult </label>
+            </div>
+            </div>
         </div>
         <div className="ranges">
         <h1>Settings</h1>
@@ -275,20 +289,6 @@ render() {
             </div>
             </div>
             <button onClick={this.onStart} disabled={!this.state.speed || !this.state.mainCardBeingPlayed}>Start</button><br/>
-            <div className="difficulty-ranges">
-            <div>
-            <input type="radio" id="opteight" name="diffstr" value="1036800000" checked={this.state.difficulty === "86400000"} onChange={this.onDifficultyChange}/>
-            <label> Easy </label>
-            </div>
-            <div>
-            <input type="radio" id="opteight" name="diffstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
-            <label> Medium </label>
-            </div>
-            <div>
-            <input type="radio" id="opteight" name="diffstr" value="86400000" onChange={this.onDifficultyChange} checked={this.state.difficulty === "1036800000"}/>
-            <label> Difficult </label>
-            </div>
-            </div>
             </div>
             <div>
         </div>
