@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { startEditFlashcard } from '../actions/flashcards';
+import NotificationModal from './NotificationModal'
+import FinishedModal from './FinishedModal'
 
 
 export class FlashcardBoardPage extends React.Component {
@@ -19,7 +21,9 @@ export class FlashcardBoardPage extends React.Component {
             j: 1,
             speed: null,
             checked: null,
-            secondTime: null
+            secondTime: null,
+            modalOpen: null,
+            modalOpenFinished: null
         };
     }
     onStart = () => {
@@ -52,13 +56,14 @@ export class FlashcardBoardPage extends React.Component {
             }, timer);
 
             timer += incrementer
-
     }
 
     setTimeout(() => {
 
         this.state.secondTime += 1
-
+        if (this.state.secondTime === 1) {
+            this.setState({ modalOpen: true })
+        }
         this.setState({ sequenceRunning: false })
 
         this.setState({ i: 0  })
@@ -79,7 +84,16 @@ export class FlashcardBoardPage extends React.Component {
     }, timer);
     if (this.state.secondTime === 17) {
         this.props.startEditFlashcard(this.props.flashcard.id, { lastStudiedAt: Date.now() });
-    }
+    } 
+
+    timer += incrementer;
+
+    setTimeout(() => {
+ 
+    if (this.state.secondTime === 18 && this.state.sequenceRunning === false) {
+        this.setState({ modalOpenFinished: true })
+    } 
+    }, timer);
 };
 onClickFlipOne = () => {
     if (!this.state.isFlipped.includes(1)) {
@@ -157,6 +171,13 @@ onDifficultyChange = (e) => {
     this.setState({ difficulty: e.target.value })
     this.props.startEditFlashcard(this.props.flashcard.id, { difficulty: e.target.value });
 }
+clearStateCloseModal = () => {
+    this.setState(() => ({ modalOpen: null  }));
+  }
+  onFinish = () => {
+    this.setState(() => ({ modalOpenFinished: null  }));
+    this.props.history.push('/');
+  }
 render() {
     return (
         <div>
@@ -294,7 +315,7 @@ render() {
             <label> {this.props.flashcard.spanishnine} </label>
             </div>
             </div>
-            <button onClick={this.onStart} disabled={!this.state.speed || !this.state.mainCardBeingPlayed}>Start</button><br/>
+            <button onClick={this.onStart} disabled={!this.state.speed || !this.state.mainCardBeingPlayed || this.state.sequenceRunning}>Start</button><br/>
             <div className="difficulty-ranges-mobile">
             <div>
             <input type="radio" id="opteight" name="diffstrr" value="86400000" checked={this.state.difficulty === "86400000"}  onChange={this.onDifficultyChange}/>
@@ -313,6 +334,15 @@ render() {
             <div>
         </div>
         </div>
+        <FinishedModal
+        modalOpenFinished={this.state.modalOpenFinished}
+        clearStateCloseModalFinished={this.clearStateCloseModalFinished}
+        onFinish={this.onFinish}
+        />
+        <NotificationModal
+                    modalOpen={this.state.modalOpen}
+                    clearStateCloseModal={this.clearStateCloseModal}
+                    />
         </div>
         )
     }

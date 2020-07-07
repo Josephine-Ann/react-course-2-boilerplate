@@ -30,8 +30,8 @@ ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    store.dispatch(login(user.uid));
     store.dispatch(startSetFlashcardsUniversal())
+    store.dispatch(login(user.uid));
     store.dispatch(startSetFlashcards()).then(() => {
       renderApp();
       if (history.location.pathname === '/') {

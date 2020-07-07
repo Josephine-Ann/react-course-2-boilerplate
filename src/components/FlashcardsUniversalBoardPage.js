@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { startEditFlashcard } from '../actions/flashcards';
+import NotificationModal from './NotificationModal'
 
 
 export class FlashcardsUniversalBoardPage extends React.Component {
@@ -19,7 +20,8 @@ export class FlashcardsUniversalBoardPage extends React.Component {
             j: 1,
             speed: null,
             checked: null,
-            secondTime: null
+            secondTime: null,
+            modalOpen: null
         };
     }
     onStart = () => {
@@ -58,6 +60,9 @@ export class FlashcardsUniversalBoardPage extends React.Component {
     setTimeout(() => {
 
         this.state.secondTime += 1
+        if (this.state.secondTime === 1) {
+            this.setState({ modalOpen: true })
+        }
 
         this.setState({ sequenceRunning: false })
 
@@ -157,6 +162,9 @@ onDifficultyChange = (e) => {
     this.setState({ difficulty: e.target.value })
     this.props.startEditflashcardsuniversal(this.props.flashcardsuniversal.id, { difficulty: e.target.value });
 }
+clearStateCloseModal = () => {
+    this.setState(() => ({ modalOpen: null  }));
+  }
 render() {
     return (
         <div>
@@ -307,6 +315,10 @@ render() {
             <div>
         </div>
         </div>
+        <NotificationModal
+        modalOpen={this.state.modalOpen}
+        clearStateCloseModal={this.clearStateCloseModal}
+        />
         </div>
         )
     }
