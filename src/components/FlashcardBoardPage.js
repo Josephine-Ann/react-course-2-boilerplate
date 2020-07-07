@@ -16,11 +16,11 @@ export class FlashcardBoardPage extends React.Component {
             isFlipped: [],
             cardInAction: null,
             sequenceRunning: false,
-            mainCardBeingPlayed: null,
+            mainCardBeingPlayed: "1",
             i: 0,
             j: 1,
             speed: null,
-            checked: null,
+            checked: [1],
             secondTime: null,
             modalOpen: null,
             modalOpenFinished: null
@@ -75,7 +75,7 @@ export class FlashcardBoardPage extends React.Component {
             this.setState({ isFlipped:  this.state.isFlipped.concat(parseInt(this.state.mainCardBeingPlayed, 10)) })
 
         } else if (this.state.secondTime % 2 === 0) {
-            this.setState({ checked:  parseInt(this.state.mainCardBeingPlayed, 10) + 1 })
+            this.setState({ checked: this.state.checked.concat(parseInt(this.state.mainCardBeingPlayed, 10) + 1) })
             let mainCardBeingPlayedCopy = parseInt(this.state.mainCardBeingPlayed, 10)
             mainCardBeingPlayedCopy += 1
             mainCardBeingPlayedCopy = mainCardBeingPlayedCopy.toString(10)
@@ -181,7 +181,7 @@ clearStateCloseModal = () => {
 render() {
     return (
         <div>
-        {(typeof this.state.secondTime !== "number" ) && <p className="para-instruc-start">Program your settings below, hit start and say the word in English when the card flashes grey!</p>}
+        {(typeof this.state.secondTime !== "number" ) && <p className="para-instruc-start">Program your speed below, hit start and say the word in English when the card flashes grey!</p>}
         {(this.state.secondTime) && <p className="para-instruc-start">Continue to say the word in English, even though you see it in Spanish!</p>}
         <div className="page">
         <div className="grid">
@@ -262,7 +262,7 @@ render() {
         </div>
         <div className="ranges">
         <h1>Settings</h1>
-        <p>Program your settings in order to start</p>
+        <p>Program your speed and hit start</p>
         <p className={"titles-instru"}>Speed</p>
         <div>
         <input type="radio" id="1" name="speed" value="950" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
@@ -276,42 +276,42 @@ render() {
         <input type="radio" id="3" name="speed" value="450" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Fast speed</label><br/>
         </div>
-        <p className={"titles-instru"}>Starting point</p>
+        <p className={"titles-instru"}>Your progress</p>
             <div className="radio-button-container">
             <div className="radio-starting-point">
-            <input type="radio" id="optone" name="optstr" value="1" checked={this.state.checked === 1} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optone" name="optstr" value="1" checked={this.state.checked.includes(2)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcard.spanishone} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="opttwo" name="optstr" value="2" checked={this.state.checked === 2} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="opttwo" name="optstr" value="2" checked={this.state.checked.includes(3)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcard.spanishtwo} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optthree" name="optstr" value="3" checked={this.state.checked === 3} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optthree" name="optstr" value="3" checked={this.state.checked.includes(4)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcard.spanishthree} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optfour" name="optstr" value="4" checked={this.state.checked === 4} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optfour" name="optstr" value="4" checked={this.state.checked.includes(5)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcard.spanishfour} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optfive" name="optstr" value="5" checked={this.state.checked === 5} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optfive" name="optstr" value="5" checked={this.state.checked.includes(6)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcard.spanishfive} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optsix" name="optstr" value="6" checked={this.state.checked === 6} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optsix" name="optstr" value="6" checked={this.state.checked.includes(7)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcard.spanishsix} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optseven" name="optstr" value="7" checked={this.state.checked === 7} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optseven" name="optstr" value="7" checked={this.state.checked.includes(8)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcard.spanishseven} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="opteight" name="optstr" value="8" checked={this.state.checked === 8} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="opteight" name="optstr" value="8" checked={this.state.checked.includes(9)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcard.spanisheight} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optnine" name="optstr" value="9" checked={this.state.checked === 9} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optnine" name="optstr" value="9" checked={this.state.checked.includes(10)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcard.spanishnine} </label>
             </div>
             </div>
