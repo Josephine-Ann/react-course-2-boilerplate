@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const FinishedModal = (props) => (
+const FinishedModalUni = (props) => (
     <Modal 
     isOpen={!!props.modalOpenFinished}
     contentLabel="modalOpenFinished"
@@ -9,10 +9,9 @@ const FinishedModal = (props) => (
     onFinish={props.onFinish}
     className="modal"
     >
-       <p className="modal__body">You have finished        studying, when you need to     study again this board will turn red!</p>
+       <p className="modal__body">You have finished studying, if you like this board add it to your personal list!</p>
        <button className="button" onClick={props.onFinish}>Okay!</button>
     </Modal>
 );
 
-export default FinishedModal;
-
+export default FinishedModalUni;

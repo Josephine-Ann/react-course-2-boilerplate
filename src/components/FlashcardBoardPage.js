@@ -248,22 +248,21 @@ render() {
         <div className="difficulty-ranges-desktop">
         <div>
         <input type="radio" id="opteight" name="diffstr" value="86400000" checked={this.state.difficulty === "86400000"}  onChange={this.onDifficultyChange}/>
-        <label> Easy </label>
+        <label> Study every 12 days </label>
         </div>
         <div>
         <input type="radio" id="opteight" name="diffstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
-        <label> Medium </label>
+        <label> Study every 5 days </label>
         </div>
         <div>
         <input type="radio" id="opteight" name="diffstr" value="1036800000" checked={this.state.difficulty === "1036800000"} onChange={this.onDifficultyChange}/>
-        <label> Difficult </label>
+        <label> Study every day </label>
         </div>
         </div>
         </div>
         <div className="ranges">
         <h1>Settings</h1>
         <p>Program your speed and hit start</p>
-        <p className={"titles-instru"}>Speed</p>
         <div>
         <input type="radio" id="1" name="speed" value="950" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Slow speed</label><br/>
@@ -319,15 +318,15 @@ render() {
             <div className="difficulty-ranges-mobile">
             <div>
             <input type="radio" id="opteight" name="diffstrr" value="86400000" checked={this.state.difficulty === "86400000"}  onChange={this.onDifficultyChange}/>
-            <label> Easy </label>
+            <label> Study every 12 days </label>
             </div>
             <div>
             <input type="radio" id="opteight" name="diffstrr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
-            <label> Medium </label>
+            <label> Study every 5 days </label>
             </div>
             <div>
             <input type="radio" id="opteight" name="diffstrr" value="1036800000" checked={this.state.difficulty === "1036800000"} onChange={this.onDifficultyChange}/>
-            <label> Difficult </label>
+            <label> Study every day </label>
             </div>
             </div>
             </div>

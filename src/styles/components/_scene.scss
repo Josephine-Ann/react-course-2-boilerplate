@@ -64,8 +64,8 @@
   label {
     font-size: 12px;
   }
-  margin-top: 60px;
-  margin-left: 90px;
+  margin-top: 15px;
+  margin-left: 20px;
   @media (max-width: $desktop-breakpoint - .01rem) {
     display: none;
 }
@@ -145,6 +145,13 @@ button {
   }
   label {
     font-size: 12px;
+  }
+  h1 {
+    margin: 10px 0px !important;
+  }
+  p {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
   }
 }
 

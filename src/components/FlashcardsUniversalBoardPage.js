@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { startEditFlashcard } from '../actions/flashcards';
 import NotificationModal from './NotificationModal'
+import FinishedModalUni from './FinishedModalUni'
 
 
 export class FlashcardsUniversalBoardPage extends React.Component {
@@ -15,13 +15,14 @@ export class FlashcardsUniversalBoardPage extends React.Component {
             isFlipped: [],
             cardInAction: null,
             sequenceRunning: false,
-            mainCardBeingPlayed: null,
+            mainCardBeingPlayed: "1",
             i: 0,
             j: 1,
             speed: null,
-            checked: null,
+            checked: [1],
             secondTime: null,
-            modalOpen: null
+            modalOpen: null,
+            modalOpenFinished: null
         };
     }
     onStart = () => {
@@ -75,16 +76,22 @@ export class FlashcardsUniversalBoardPage extends React.Component {
             this.setState({ isFlipped:  this.state.isFlipped.concat(parseInt(this.state.mainCardBeingPlayed, 10)) })
 
         } else if (this.state.secondTime % 2 === 0) {
-            this.setState({ checked:  parseInt(this.state.mainCardBeingPlayed, 10) + 1 })
+            this.setState({ checked: this.state.checked.concat(parseInt(this.state.mainCardBeingPlayed, 10) + 1) })
             let mainCardBeingPlayedCopy = parseInt(this.state.mainCardBeingPlayed, 10)
             mainCardBeingPlayedCopy += 1
             mainCardBeingPlayedCopy = mainCardBeingPlayedCopy.toString(10)
             this.setState({ mainCardBeingPlayed: mainCardBeingPlayedCopy })
         }
     }, timer);
-    if (this.state.secondTime === 17) {
-        this.props.startEditflashcardsuniversal(this.props.flashcardsuniversal.id, { lastStudiedAt: Date.now() });
-    }
+
+    timer += incrementer;
+
+    setTimeout(() => {
+ 
+    if (this.state.secondTime === 18 && this.state.sequenceRunning === false) {
+        this.setState({ modalOpenFinished: true })
+    } 
+    }, timer);
 };
 onClickFlipOne = () => {
     if (!this.state.isFlipped.includes(1)) {
@@ -160,10 +167,14 @@ onSpeedChange = (e) => {
 }
 onDifficultyChange = (e) => {
     this.setState({ difficulty: e.target.value })
-    this.props.startEditflashcardsuniversal(this.props.flashcardsuniversal.id, { difficulty: e.target.value });
+    this.props.startEditFlashcard(this.props.flashcardsuniversal.id, { difficulty: e.target.value });
 }
 clearStateCloseModal = () => {
     this.setState(() => ({ modalOpen: null  }));
+  }
+  onFinish = () => {
+    this.setState(() => ({ modalOpenFinished: null  }));
+    this.props.history.push('/');
   }
 render() {
     return (
@@ -232,24 +243,10 @@ render() {
         </div>
         </div>
         </div>
-        <div className="difficulty-ranges-desktop">
-        <div>
-        <input type="radio" id="opteight" name="diffstrr" value="86400000" checked={this.state.difficulty === "86400000"}  onChange={this.onDifficultyChange}/>
-        <label> Easy </label>
-        </div>
-        <div>
-        <input type="radio" id="opteight" name="diffstrr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
-        <label> Medium </label>
-        </div>
-        <div>
-        <input type="radio" id="opteight" name="diffstrr" value="1036800000" checked={this.state.difficulty === "1036800000"} onChange={this.onDifficultyChange}/>
-        <label> Difficult </label>
-        </div>
-        </div>
         </div>
         <div className="ranges">
         <h1>Settings</h1>
-        <p>Program your settings in order to start</p>
+        <p>Program your speed and hit start</p>
         <p>Speed</p>
         <input type="radio" id="1" name="speed" value="950" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Slow speed</label><br/>
@@ -257,64 +254,55 @@ render() {
         <label> Medium speed</label><br/>
         <input type="radio" id="3" name="speed" value="450" onChange={this.onSpeedChange} disabled={this.state.sequenceRunning}/>
         <label> Fast speed</label><br/>
-        <p>Starting point</p>
+        <p className={"titles-instru"}>Your progress</p>
             <div className="radio-button-container">
             <div className="radio-starting-point">
-            <input type="radio" id="optone" name="optstr" value="1" checked={this.state.checked === 1} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optone" name="optstr" value="1" checked={this.state.checked.includes(2)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcardsuniversal.spanishone} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="opttwo" name="optstr" value="2" checked={this.state.checked === 2} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="opttwo" name="optstr" value="2" checked={this.state.checked.includes(3)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcardsuniversal.spanishtwo} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optthree" name="optstr" value="3" checked={this.state.checked === 3} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optthree" name="optstr" value="3" checked={this.state.checked.includes(4)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcardsuniversal.spanishthree} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optfour" name="optstr" value="4" checked={this.state.checked === 4} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optfour" name="optstr" value="4" checked={this.state.checked.includes(5)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcardsuniversal.spanishfour} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optfive" name="optstr" value="5" checked={this.state.checked === 5} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optfive" name="optstr" value="5" checked={this.state.checked.includes(6)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcardsuniversal.spanishfive} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optsix" name="optstr" value="6" checked={this.state.checked === 6} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optsix" name="optstr" value="6" checked={this.state.checked.includes(7)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcardsuniversal.spanishsix} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optseven" name="optstr" value="7" checked={this.state.checked === 7} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optseven" name="optstr" value="7" checked={this.state.checked.includes(8)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcardsuniversal.spanishseven} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="opteight" name="optstr" value="8" checked={this.state.checked === 8} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="opteight" name="optstr" value="8" checked={this.state.checked.includes(9)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcardsuniversal.spanisheight} </label>
             </div>
             <div className="radio-starting-point">
-            <input type="radio" id="optnine" name="optstr" value="9" checked={this.state.checked === 9} onChange={this.onStartLocChange} disabled={this.state.sequenceRunning}/>
+            <input type="checkbox" id="optnine" name="optstr" value="9" checked={this.state.checked.includes(10)} onChange={this.onStartLocChange} disabled={true}/>
             <label> {this.props.flashcardsuniversal.spanishnine} </label>
             </div>
             </div>
-            <button onClick={this.onStart} disabled={!this.state.speed || !this.state.mainCardBeingPlayed}>Start</button><br/>
-            <div className="difficulty-ranges-mobile">
-            <div>
-            <input type="radio" id="opteight" name="diffstr" value="1036800000" checked={this.state.difficulty === "86400000"} onChange={this.onDifficultyChange}/>
-            <label> Easy </label>
-            </div>
-            <div>
-            <input type="radio" id="opteight" name="diffstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange}/>
-            <label> Medium </label>
-            </div>
-            <div>
-            <input type="radio" id="opteight" name="diffstr" value="86400000" checked={this.state.difficulty === "1036800000"} onChange={this.onDifficultyChange}/>
-            <label> Difficult </label>
-            </div>
-            </div>
+            <button onClick={this.onStart} disabled={!this.state.speed || this.state.sequenceRunning}>Start</button><br/>
             </div>
             <div>
         </div>
         </div>
+        <FinishedModalUni
+        modalOpenFinished={this.state.modalOpenFinished}
+        clearStateCloseModalFinished={this.clearStateCloseModalFinished}
+        onFinish={this.onFinish}
+        />
         <NotificationModal
         modalOpen={this.state.modalOpen}
         clearStateCloseModal={this.clearStateCloseModal}
@@ -327,8 +315,5 @@ const mapStateToProps = (state, props) => ({
     flashcardsuniversal: state.flashcardsuniversal.find((flashcardsuniversal) => flashcardsuniversal.id === props.match.params.id )
 });
 
-const mapDispatchToProps = (dispatch) => ({
-    startEditFlashcard: (id, flashcardsuniversal) => dispatch(startEditflashcardsuniversal(id, flashcardsuniversal)),
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(FlashcardsUniversalBoardPage);
+export default connect(mapStateToProps, undefined)(FlashcardsUniversalBoardPage);
