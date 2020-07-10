@@ -11,7 +11,7 @@ export class EditFlashcardPage extends React.Component {
     };
     onSubmit = (flashcard) => {
         this.props.startEditFlashcard(this.props.flashcard.id, flashcard);
-        if (flashcard.putInUniversal === 2) {
+        if (flashcard.putInUniversal === 1) {
             this.props.startAddFlashcardsUniversal(flashcard);
         }
         this.props.history.push('/');

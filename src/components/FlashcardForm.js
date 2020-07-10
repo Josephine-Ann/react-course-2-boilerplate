@@ -161,7 +161,9 @@ export default class FlashcardForm extends React.Component {
         universalBoolean = parseInt(universalBoolean, 10)
         universalBoolean = !!universalBoolean
         this.setState(() => ({ universal: universalBoolean }));
-        this.setState(() => ({ putInUniversal: 1 }));
+        this.setState(prevState => {
+            return { putInUniversal: prevState + 1 }
+        });
     }; 
     onDateChange = (createdAt) => {
         if (createdAt) {
