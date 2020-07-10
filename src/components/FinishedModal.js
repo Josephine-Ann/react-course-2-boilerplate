@@ -9,7 +9,7 @@ const FinishedModal = (props) => (
     onFinish={props.onFinish}
     className="modal"
     >
-       <p className="modal__body">You have finished        studying, when you need to     study again this board will turn red!</p>
+       <p className="modal__body">You have finished studying, when you need to study again this board will turn red!</p>
        <button className="button" onClick={props.onFinish}>Okay!</button>
     </Modal>
 );

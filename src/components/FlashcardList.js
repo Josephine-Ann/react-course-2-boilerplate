@@ -14,7 +14,7 @@ export const FlashcardList = (props) => (
             {
                 props.flashcards.length === 0 ? (
                     <div className="list-item list-item--message">
-                        <span>No flashcards</span>
+                        <span>No flashcards, look at shared flashcards or add some yourself.</span>
                     </div>
                     ) : (
                     props.flashcards.map((flashcard) => {

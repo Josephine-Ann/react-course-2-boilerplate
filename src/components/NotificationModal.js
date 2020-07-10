@@ -8,7 +8,7 @@ const NotificationModal = (props) => (
     onRequestClose={props.clearStateCloseModal}
     className="modal"
     >
-       <p className="modal__body">Now continue saying it in English, although you now see it in Spanish!</p>
+       <p className="modal__body">Now continue saying the word in English, although you now see it in Spanish!</p>
        <button className="button" onClick={props.clearStateCloseModal}>Okay!</button>
     </Modal>
 );
