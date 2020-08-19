@@ -6,10 +6,10 @@ const now = moment();
 
 export default class FlashcardForm extends React.Component {
     constructor(props) {
-        super(props); 
+        super(props);
 
         this.state = {
-            putInUniversal: props.flashcard ? props.flashcard.universal : 0,
+            putInUniversal: props.flashcard ? props.flashcard.universal : false,
             universal: props.flashcard ? props.flashcard.universal : '',
             title: props.flashcard ? props.flashcard.title : '',
             difficulty: props.flashcard ? props.flashcard.difficulty : '',
@@ -43,6 +43,7 @@ export default class FlashcardForm extends React.Component {
             this.setState(() => ({ title }));
 
         }
+        console.log(this.state.putInUniversal)
     };
     onEnglishOneChange = (e) => {
         const englishone = e.target.value;
@@ -155,16 +156,16 @@ export default class FlashcardForm extends React.Component {
     onDifficultyChange = (e) => {
         const difficulty = e.target.value;
         this.setState(() => ({ difficulty }));
-    }; 
+    };
     onUniversalChange = (e) => {
         let universalBoolean = e.target.value
         universalBoolean = parseInt(universalBoolean, 10)
         universalBoolean = !!universalBoolean
         this.setState(() => ({ universal: universalBoolean }));
         this.setState(prevState => {
-            return { putInUniversal: prevState + 1 }
+            return { putInUniversal: prevState && true }
         });
-    }; 
+    };
     onDateChange = (createdAt) => {
         if (createdAt) {
             this.setState(() => ({ createdAt }));
@@ -204,184 +205,184 @@ export default class FlashcardForm extends React.Component {
                 spanishseven: this.state.spanishseven,
                 spanisheight: this.state.spanisheight,
                 spanishnine: this.state.spanishnine,
-                putInUniversal: this.state.putInUniversal + 1
-             })
+                putInUniversal: this.state.universal && true
+            })
         }
     }
-    render () {
+    render() {
         return (
             <form className="form" onSubmit={this.onSubmit}>
-            {this.state.error && <p className="form__error">{this.state.error}</p>}
-            <div className="difficulty-ranges-form">
-            <div>
-            <input type="radio" id="opteight" name="optstr" value="86400000" checked={this.state.difficulty === "86400000"} onChange={this.onDifficultyChange}/>
-            <label> Easy </label>
-            </div>
-            <div>
-            <input type="radio" id="opteight" name="optstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange} />
-            <label> Medium </label>
-            </div>
-            <div>
-            <input type="radio" id="opteight" name="optstr" value="1036800000" onChange={this.onDifficultyChange} checked={this.state.difficulty === "1036800000"}/>
-            <label> Difficult </label>
-            </div>
-            </div>
-            <div className="universal difficulty-ranges-form">
-            <div>
-            <input type="radio" id="not-universal" name="universal" value="0" checked={this.state.universal === false } onChange={this.onUniversalChange} disabled={this.state.universal}/>
-            <label> Just for me </label>
-            </div>
-            <div>
-            <input type="radio" id="universal" name="universal" value="1" checked={this.state.universal === true } onChange={this.onUniversalChange} disabled={this.state.universal}/>
-            <label> Share it! </label>
-            </div>
-            </div>
-            <p>Once shared, lists cannot be edited or deleted.</p>
-            <input
-            type="text"
-            placeholder="Title"
-            autoFocus
-            className="text-input"
-            value={this.state.title}
-            onChange={this.onTitleChange}
-            />
-            <SingleDatePicker 
-            date={this.state.createdAt} 
-            onDateChange={this.onDateChange} 
-            focused={this.state.calendarFocused}
-            onFocusChange={this.onFocusChange}
-            numberOfMonths={1} 
-            isOutsideRange={(day) => false } 
-            />
-            <input
-            type="test"
-            placeholder="English one"
-            className="text-input"
-            value={this.state.englishone}
-            onChange={this.onEnglishOneChange}
-            />
-            <input
-            type="test"
-            placeholder="Spanish one"
-            className="text-input"
-            value={this.state.spanishone}
-            onChange={this.onSpanishOneChange}
-            />
-            <input
-            type="test"
-            placeholder="English two"
-            className="text-input"
-            value={this.state.englishtwo}
-            onChange={this.onEnglishTwoChange}
-            />
-            <input
-            type="test"
-            placeholder="Spanish two"
-            className="text-input"
-            value={this.state.spanishtwo}
-            onChange={this.onSpanishTwoChange}
-            />
-            <input
-            type="test"
-            placeholder="English three"
-            className="text-input"
-            value={this.state.englishthree}
-            onChange={this.onEnglishThreeChange}
-            />
-            <input
-            type="test"
-            placeholder="Spanish three"
-            className="text-input"
-            value={this.state.spanishthree}
-            onChange={this.onSpanishThreeChange}
-            />
-            <input
-            type="test"
-            placeholder="English four"
-            className="text-input"
-            value={this.state.englishfour}
-            onChange={this.onEnglishFourChange}
-            />
-            <input
-            type="test"
-            placeholder="Spanish four"
-            className="text-input"
-            value={this.state.spanishfour}
-            onChange={this.onSpanishFourChange}
-            />
-            <input
-            type="test"
-            placeholder="English five"
-            className="text-input"
-            value={this.state.englishfive}
-            onChange={this.onEnglishFiveChange}
-            />
-            <input
-            type="test"
-            placeholder="Spanish five"
-            className="text-input"
-            value={this.state.spanishfive}
-            onChange={this.onSpanishFiveChange}
-            />
-            <input
-            type="test"
-            placeholder="English six"
-            className="text-input"
-            value={this.state.englishsix}
-            onChange={this.onEnglishSixChange}
-            />
-            <input
-            type="test"
-            placeholder="Spanish six"
-            className="text-input"
-            value={this.state.spanishsix}
-            onChange={this.onSpanishSixChange}
-            />
-            <input
-            type="test"
-            placeholder="English seven"
-            className="text-input"
-            value={this.state.englishseven}
-            onChange={this.onEnglishSevenChange}
-            />
-            <input
-            type="test"
-            placeholder="Spanish seven"
-            className="text-input"
-            value={this.state.spanishseven}
-            onChange={this.onSpanishSevenChange}
-            />
-            <input
-            type="test"
-            placeholder="English eight"
-            className="text-input"
-            value={this.state.englisheight}
-            onChange={this.onEnglishEightChange}
-            />
-            <input
-            type="test"
-            placeholder="Spanish eight"
-            className="text-input"
-            value={this.state.spanisheight}
-            onChange={this.onSpanishEightChange}
-            />
-            <input
-            type="test"
-            placeholder="English nine"
-            className="text-input"
-            value={this.state.englishnine}
-            onChange={this.onEnglishNineChange}
-            />
-            <input
-            type="test"
-            placeholder="Spanish nine"
-            className="text-input"
-            value={this.state.spanishnine}
-            onChange={this.onSpanishNineChange}
-            />
-            <div>
-                <button className="button">Save Flashcard</button>
-            </div>
+                {this.state.error && <p className="form__error">{this.state.error}</p>}
+                <div className="difficulty-ranges-form">
+                    <div>
+                        <input type="radio" id="opteight" name="optstr" value="86400000" checked={this.state.difficulty === "86400000"} onChange={this.onDifficultyChange} />
+                        <label> Easy </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="opteight" name="optstr" value="432000000" checked={this.state.difficulty === "432000000"} onChange={this.onDifficultyChange} />
+                        <label> Medium </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="opteight" name="optstr" value="1036800000" onChange={this.onDifficultyChange} checked={this.state.difficulty === "1036800000"} />
+                        <label> Difficult </label>
+                    </div>
+                </div>
+                <div className="universal difficulty-ranges-form">
+                    <div>
+                        <input type="radio" id="not-universal" name="universal" value="0" checked={this.state.universal === false} onChange={this.onUniversalChange} disabled={this.state.universal} />
+                        <label> Just for me </label>
+                    </div>
+                    <div>
+                        <input type="radio" id="universal" name="universal" value="1" checked={this.state.universal === true} onChange={this.onUniversalChange} disabled={this.state.universal} />
+                        <label> Share it! </label>
+                    </div>
+                </div>
+                <p>Once shared, lists cannot be edited or deleted.</p>
+                <input
+                    type="text"
+                    placeholder="Title"
+                    autoFocus
+                    className="text-input"
+                    value={this.state.title}
+                    onChange={this.onTitleChange}
+                />
+                <SingleDatePicker
+                    date={this.state.createdAt}
+                    onDateChange={this.onDateChange}
+                    focused={this.state.calendarFocused}
+                    onFocusChange={this.onFocusChange}
+                    numberOfMonths={1}
+                    isOutsideRange={(day) => false}
+                />
+                <input
+                    type="test"
+                    placeholder="English one"
+                    className="text-input"
+                    value={this.state.englishone}
+                    onChange={this.onEnglishOneChange}
+                />
+                <input
+                    type="test"
+                    placeholder="Spanish one"
+                    className="text-input"
+                    value={this.state.spanishone}
+                    onChange={this.onSpanishOneChange}
+                />
+                <input
+                    type="test"
+                    placeholder="English two"
+                    className="text-input"
+                    value={this.state.englishtwo}
+                    onChange={this.onEnglishTwoChange}
+                />
+                <input
+                    type="test"
+                    placeholder="Spanish two"
+                    className="text-input"
+                    value={this.state.spanishtwo}
+                    onChange={this.onSpanishTwoChange}
+                />
+                <input
+                    type="test"
+                    placeholder="English three"
+                    className="text-input"
+                    value={this.state.englishthree}
+                    onChange={this.onEnglishThreeChange}
+                />
+                <input
+                    type="test"
+                    placeholder="Spanish three"
+                    className="text-input"
+                    value={this.state.spanishthree}
+                    onChange={this.onSpanishThreeChange}
+                />
+                <input
+                    type="test"
+                    placeholder="English four"
+                    className="text-input"
+                    value={this.state.englishfour}
+                    onChange={this.onEnglishFourChange}
+                />
+                <input
+                    type="test"
+                    placeholder="Spanish four"
+                    className="text-input"
+                    value={this.state.spanishfour}
+                    onChange={this.onSpanishFourChange}
+                />
+                <input
+                    type="test"
+                    placeholder="English five"
+                    className="text-input"
+                    value={this.state.englishfive}
+                    onChange={this.onEnglishFiveChange}
+                />
+                <input
+                    type="test"
+                    placeholder="Spanish five"
+                    className="text-input"
+                    value={this.state.spanishfive}
+                    onChange={this.onSpanishFiveChange}
+                />
+                <input
+                    type="test"
+                    placeholder="English six"
+                    className="text-input"
+                    value={this.state.englishsix}
+                    onChange={this.onEnglishSixChange}
+                />
+                <input
+                    type="test"
+                    placeholder="Spanish six"
+                    className="text-input"
+                    value={this.state.spanishsix}
+                    onChange={this.onSpanishSixChange}
+                />
+                <input
+                    type="test"
+                    placeholder="English seven"
+                    className="text-input"
+                    value={this.state.englishseven}
+                    onChange={this.onEnglishSevenChange}
+                />
+                <input
+                    type="test"
+                    placeholder="Spanish seven"
+                    className="text-input"
+                    value={this.state.spanishseven}
+                    onChange={this.onSpanishSevenChange}
+                />
+                <input
+                    type="test"
+                    placeholder="English eight"
+                    className="text-input"
+                    value={this.state.englisheight}
+                    onChange={this.onEnglishEightChange}
+                />
+                <input
+                    type="test"
+                    placeholder="Spanish eight"
+                    className="text-input"
+                    value={this.state.spanisheight}
+                    onChange={this.onSpanishEightChange}
+                />
+                <input
+                    type="test"
+                    placeholder="English nine"
+                    className="text-input"
+                    value={this.state.englishnine}
+                    onChange={this.onEnglishNineChange}
+                />
+                <input
+                    type="test"
+                    placeholder="Spanish nine"
+                    className="text-input"
+                    value={this.state.spanishnine}
+                    onChange={this.onSpanishNineChange}
+                />
+                <div>
+                    <button className="button">Save Flashcard</button>
+                </div>
             </form>
         )
     }

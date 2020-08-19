@@ -11,7 +11,7 @@ export class EditFlashcardPage extends React.Component {
     };
     onSubmit = (flashcard) => {
         this.props.startEditFlashcard(this.props.flashcard.id, flashcard);
-        if (flashcard.putInUniversal === 1) {
+        if (flashcard.putInUniversal === true) {
             this.props.startAddFlashcardsUniversal(flashcard);
         }
         this.props.history.push('/');
@@ -24,8 +24,8 @@ export class EditFlashcardPage extends React.Component {
         this.setState({ deletedOption: true })
     }
     clearStateCloseModal = () => {
-        this.setState(() => ({ deletedOption: null  }));
-      }
+        this.setState(() => ({ deletedOption: null }));
+    }
     render() {
         return (
             <div>
@@ -33,15 +33,15 @@ export class EditFlashcardPage extends React.Component {
                     <div className="page-header">
                         <h1 className="page-header__title">Edit Flashcard</h1>
                     </div>
-                    <FlashcardForm 
-                    flashcard={this.props.flashcard}
-                    onSubmit={this.onSubmit}
+                    <FlashcardForm
+                        flashcard={this.props.flashcard}
+                        onSubmit={this.onSubmit}
                     />
                     <button className="button button--secondary" onClick={this.onSelect}>Remove flashcard</button>
                     <DeleteModal
-                    modalOpen={this.state.deletedOption}
-                    clearStateCloseModal={this.clearStateCloseModal}
-                    onRemove={this.onRemove}
+                        modalOpen={this.state.deletedOption}
+                        clearStateCloseModal={this.clearStateCloseModal}
+                        onRemove={this.onRemove}
                     />
                 </div>
             </div>
@@ -49,7 +49,7 @@ export class EditFlashcardPage extends React.Component {
     }
 }
 const mapStateToProps = (state, props) => ({
-    flashcard: state.flashcards.find((flashcard) => flashcard.id === props.match.params.id ),
+    flashcard: state.flashcards.find((flashcard) => flashcard.id === props.match.params.id),
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
