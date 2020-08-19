@@ -9,7 +9,7 @@ export default class FlashcardForm extends React.Component {
         super(props);
 
         this.state = {
-            putInUniversal: props.flashcard ? props.flashcard.universal : false,
+            putInUniversal: props.flashcard ? props.flashcard.putInUniversal : false,
             universal: props.flashcard ? props.flashcard.universal : '',
             title: props.flashcard ? props.flashcard.title : '',
             difficulty: props.flashcard ? props.flashcard.difficulty : '',
@@ -163,7 +163,7 @@ export default class FlashcardForm extends React.Component {
         universalBoolean = !!universalBoolean
         this.setState(() => ({ universal: universalBoolean }));
         this.setState(prevState => {
-            return { putInUniversal: prevState && true }
+            return { putInUniversal: prevState && false }
         });
     };
     onDateChange = (createdAt) => {
@@ -205,7 +205,7 @@ export default class FlashcardForm extends React.Component {
                 spanishseven: this.state.spanishseven,
                 spanisheight: this.state.spanisheight,
                 spanishnine: this.state.spanishnine,
-                putInUniversal: this.state.universal && true
+                putInUniversal: this.state.universal && false
             })
         }
     }
