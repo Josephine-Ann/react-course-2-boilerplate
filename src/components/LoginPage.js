@@ -10,7 +10,7 @@ export const LoginPage = ({ startLogin }) => (
         </div>
         <div className="box-sec-part show-for-desktop">
             <div className="box-layout__box">
-                <h1 className="box-layout__title">Flashcards</h1>
+                <h1 className="box-layout__title">Forever Flashcards</h1>
                 <p></p>
                 <button className="button" onClick={startLogin}>Login with Google</button>
             </div>
