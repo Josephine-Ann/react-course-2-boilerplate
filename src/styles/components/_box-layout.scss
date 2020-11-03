@@ -1,10 +1,15 @@
 .box-layout {
+    @media (min-width: 1040px) {
+        justify-content: flex-start;
+    }
     background-size: cover;
     display: flex; 
-    justify-content: flex-start;
     width: 100vw;
     height: 100vh;
-    background-color:#F9E79F
+    background-color:#F9E79F;
+    @media (max-width: 1039px) {
+        justify-content: center;
+    }
 }
 
 .box {
@@ -42,7 +47,12 @@
     @media (min-width: $desktop-breakpoint) {
     margin: 250px;
     }
+    @media (max-width: 1039px) {
+        margin: 3rem;
+    }
 }
+
+
 
 .box-layout__title {
     margin: 0 0 $m-size 0;
@@ -55,6 +65,9 @@
     display: flex;
     flex-wrap: wrap;
     flex-shrink: 0;
+    @media (max-width: 1039px) {
+        width: 0%;
+    }
     @media (min-width: $desktop-breakpoint) {
         width: 50vw;
         background: url('/images/study.png');

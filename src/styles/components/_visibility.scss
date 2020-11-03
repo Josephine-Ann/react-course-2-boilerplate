@@ -5,8 +5,15 @@
 }
 
 .show-for-desktop {
-    @media (max-width: $desktop-breakpoint - .01rem) {
+    @media only screen and (max-width: $desktop-breakpoint - .01rem) and (min-width: 1040px) {
         display: none;
     }
 }
+// @media only screen and (max-width: 600px) and (min-width: 400px) 
 
+// .box-grid {
+//     @media (max-width: 1039px) {
+//         width: 0vw;
+//         background: url(/images/study.png);
+//     }
+// }
